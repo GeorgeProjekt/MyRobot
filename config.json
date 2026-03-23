@@ -1,0 +1,122 @@
+{
+  "strategy": {
+    "name": "big_moves_breakout",
+    "mode": "trend_following",
+    "risk_pct": 0.005,
+    "max_positions": 5,
+    "ema_fast": 50,
+    "ema_slow": 200,
+    "atr_period": 14,
+    "breakout_n": 55,
+    "breakout_buffer_atr": 0.3,
+    "use_volume": true,
+    "volume_period": 20,
+    "volume_mult": 1.5,
+    "use_resistance": true,
+    "res_lookback": 120,
+    "res_pivot": 3,
+    "fgi_filter": false,
+    "cooldown_bars": 5,
+    "market_data": {
+      "provider": "coinmate",
+      "timeframe": "4h",
+      "symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "ADA/USDT"
+      ],
+      "exec_to_data": {
+        "BTC_EUR": "BTC/USDT",
+        "BTC_CZK": "BTC/USDT",
+        "ETH_EUR": "ETH/USDT",
+        "ETH_CZK": "ETH/USDT",
+        "ADA_CZK": "ADA/USDT"
+      }
+    },
+    "execution": {
+      "venue": "coinmate",
+      "pairs": [
+        "BTC_EUR",
+        "BTC_CZK",
+        "ETH_EUR",
+        "ETH_CZK",
+        "ADA_CZK"
+      ]
+    },
+    "fgi_min": 20,
+    "paper_balances": {
+      "EUR": 30000,
+      "CZK": 2000000
+    },
+    "fx_rates": {
+      "USDT->EUR": null,
+      "EUR->USDT": null,
+      "USDT->CZK": null,
+      "CZK->USDT": null,
+      "EUR->CZK": null,
+      "CZK->EUR": null
+    },
+    "max_position_value_pct": 0.3,
+    "max_total_exposure_pct": 1.0,
+    "min_trade_value": 10.0,
+    "fee_bps": 8.0,
+    "slippage_bps": 5.0,
+    "kelly": {
+      "enabled": true,
+      "fractional": 0.25,
+      "min_trades": 30,
+      "ttl_sec": 3600,
+      "days": 365
+    }
+  },
+  "b3_1": {
+    "enabled": true,
+    "provider": "coinmate",
+    "mode": "trend_following",
+    "journal_path": "runtime/journal/trades.jsonl",
+    "learning_limit": 500,
+    "timeframe": "1d",
+    "days": 90
+  },
+  "b3_3": {
+    "enabled": true,
+    "mode": "paper",
+    "allow_live_default": false,
+    "default_timeframe": "1d",
+    "default_stale_after_sec": 180,
+    "default_max_reconcile_gap": 1e-06,
+    "default_capital": 10000,
+    "pair_profiles": {
+      "BTC_EUR": {
+        "capital": 12000,
+        "strategy": "trend_following",
+        "timeframe": "1d",
+        "allow_live": false
+      },
+      "BTC_CZK": {
+        "capital": 800000,
+        "strategy": "trend_following",
+        "timeframe": "1d",
+        "allow_live": false
+      },
+      "ETH_EUR": {
+        "capital": 9000,
+        "strategy": "trend_following",
+        "timeframe": "1d",
+        "allow_live": false
+      },
+      "ETH_CZK": {
+        "capital": 600000,
+        "strategy": "trend_following",
+        "timeframe": "1d",
+        "allow_live": false
+      },
+      "ADA_CZK": {
+        "capital": 400000,
+        "strategy": "trend_following",
+        "timeframe": "1d",
+        "allow_live": false
+      }
+    }
+  }
+}

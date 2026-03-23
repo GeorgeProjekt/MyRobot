@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MyRobot – Detailní nápověda</title>
+<style>
+:root{
+  --bg:#0b1220;
+  --panel:#0f172a;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --acc:#6ee7b7;
+  --acc2:#93c5fd;
+  --warn:#fbbf24;
+  --bad:#fb7185;
+  --border:rgba(148,163,184,.22);
+  --code:rgba(148,163,184,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(11,18,32,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  padding:14px 16px;
+}
+header h1{
+  margin:0;
+  font-size:16px;
+}
+header .sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+  line-height:1.5;
+}
+.wrap{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:14px;
+  padding:14px;
+}
+nav{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(148,163,184,.06);
+  overflow:auto;
+  max-height:calc(100vh - 90px);
+}
+nav .top{
+  padding:10px;
+  border-bottom:1px solid var(--border);
+}
+nav input{
+  width:100%;
+  padding:10px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(15,23,42,.35);
+  color:var(--text);
+}
+nav a{
+  display:block;
+  padding:9px 10px;
+  text-decoration:none;
+  color:var(--text);
+  border-bottom:1px solid rgba(148,163,184,.08);
+}
+nav a:hover{
+  background:rgba(110,231,183,.10);
+}
+main{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(148,163,184,.04);
+  padding:14px;
+  overflow:auto;
+  max-height:calc(100vh - 90px);
+}
+section.page{
+  padding:10px 6px 18px;
+  border-bottom:1px dashed rgba(148,163,184,.18);
+}
+section.page:last-child{
+  border-bottom:none;
+}
+h2{
+  margin:0 0 8px;
+  font-size:18px;
+  color:#fff;
+}
+h3{
+  margin:14px 0 6px;
+  font-size:13px;
+  color:#fff;
+}
+p,li{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text);
+}
+small{
+  color:var(--muted);
+}
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:8px;
+}
+code,pre{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+code{
+  background:var(--code);
+  padding:1px 6px;
+  border-radius:8px;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.12);
+}
+pre{
+  background:var(--code);
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  overflow:auto;
+  white-space:pre-wrap;
+}
+.callout{
+  border-left:3px solid rgba(110,231,183,.75);
+  padding:10px 12px;
+  background:rgba(110,231,183,.08);
+  border-radius:12px;
+  margin:10px 0;
+}
+.callout.warn{
+  border-left-color:rgba(251,191,36,.9);
+  background:rgba(251,191,36,.08);
+}
+.callout.bad{
+  border-left-color:rgba(251,113,133,.9);
+  background:rgba(251,113,133,.08);
+}
+.tag{
+  display:inline-flex;
+  padding:2px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--muted);
+  font-size:12px;
+  margin-right:6px;
+  white-space:nowrap;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  overflow:hidden;
+  margin:10px 0 14px;
+}
+th,td{
+  text-align:left;
+  padding:10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  vertical-align:top;
+  font-size:13px;
+}
+th{
+  background:rgba(255,255,255,.06);
+  color:#dbeafe;
+}
+hr{
+  border:none;
+  border-top:1px solid rgba(255,255,255,.08);
+  margin:14px 0;
+}
+.backbtn{
+  float:right;
+  margin-top:-2px;
+  border:1px solid var(--border);
+  background:rgba(148,163,184,.10);
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:12px;
+}
+.backbtn:hover{
+  background:rgba(110,231,183,.10);
+  border-color:rgba(110,231,183,.35);
+}
+.kv{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:10px;
+  margin:10px 0;
+}
+.kv div{
+  font-size:13px;
+}
+@media (max-width: 980px){
+  .wrap{grid-template-columns:1fr;}
+  nav,main{max-height:none}
+}
+@media print{
+  header,nav{display:none}
+  .wrap{display:block}
+  main{border:none; max-height:none}
+  section.page{page-break-after:always; border:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <button class="backbtn" onclick="window.location.href='index.html'">Zpět na dashboard</button>
+  <h1>MyRobot – Detailní nápověda</h1>
+  <div class="sub">
+    Aktuální dokumentace k jedinému aktivnímu dashboardu <b>app/static/index.html</b> a k backendu <b>app/api/app.py</b>.
+    Tato verze popisuje jen funkce, které robot nyní skutečně má. Vše, co v projektu dnes není implementované, bylo záměrně vynecháno.
+    Datum aktualizace: <b>2026-03-07</b>.
+  </div>
+</header>
+
+<div class="wrap">
+  <nav>
+    <div class="top">
+      <input id="q" placeholder="Hledat v nápovědě (pole / endpoint / klíčové slovo)…" />
+      <div style="margin-top:8px;color:var(--muted);font-size:12px">
+        Tip: zkus <code>paper</code>, <code>live</code>, <code>ARM</code>, <code>KILL</code>, <code>capital</code>, <code>chart</code>, <code>signals</code>, <code>pairs</code>.
+      </div>
+    </div>
+    <div id="toc">
+      <a href="#s0">0) Co robot nyní skutečně umí</a>
+      <a href="#s1">1) Jak je robot teď architektonicky postavený</a>
+      <a href="#s2">2) Bezpečný začátek práce s robotem</a>
+      <a href="#s3">3) Horní lišta dashboardu</a>
+      <a href="#s4">4) Portfolio souhrn</a>
+      <a href="#s5">5) Global Control: režim, ARM/DISARM, start/stop/emergency</a>
+      <a href="#s6">6) Karty párů: co přesně znamená každá hodnota</a>
+      <a href="#s7">7) Fullscreen detail páru a práce s kapitálem</a>
+      <a href="#s8">8) Velký graf páru</a>
+      <a href="#s9">9) Trades, Signals a stavové sekce</a>
+      <a href="#s10">10) Přesný význam režimů paper, live, armed, stopped</a>
+      <a href="#s11">11) Jak robot počítá ceny, změny a metriky</a>
+      <a href="#s12">12) Co jsou placeholdery a co už je reálně funkční</a>
+      <a href="#s13">13) API endpointy, které dashboard opravdu používá</a>
+      <a href="#s14">14) Doporučený praktický workflow</a>
+      <a href="#s15">15) Nejčastější problémy a jak je číst</a>
+      <a href="#s16">16) Co už v robotu nyní není</a>
+      <a href="#s17">17) Glosář pojmů</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="page" id="s0">
+      <h2>0) Co robot nyní skutečně umí</h2>
+      <div class="meta">
+        Tato nápověda popisuje dnešní reálný stav projektu. Není to katalog plánovaných funkcí, ale praktický manuál k tomu, co funguje teď.
+      </div>
+
+      <div class="callout">
+        <b>Stručně:</b> robot teď umí zobrazit aktuální tržní data pro vybrané páry, přepínat režim <b>paper/live</b>,
+        samostatně <b>ARM/DISARM</b> live exekuci, spustit nebo zastavit logiku robota, nouzově vše stopnout, nastavovat kapitál po jednotlivých párech,
+        zobrazit 24h graf páru, přehled metrik, seznam trade událostí a seznam signálů.
+      </div>
+
+      <h3>Aktivní obchodované páry v dashboardu</h3>
+      <ul>
+        <li><code>BTC_EUR</code></li>
+        <li><code>BTC_CZK</code></li>
+        <li><code>ETH_EUR</code></li>
+        <li><code>ETH_CZK</code></li>
+        <li><code>ADA_CZK</code></li>
+      </ul>
+
+      <h3>Co je hlavní účel současné verze</h3>
+      <ul>
+        <li>jednotný a stabilní dashboard bez druhé falešné UI větve,</li>
+        <li>jednotný backend pro dashboard,</li>
+        <li>zobrazení reálných cen a 24h změn místo mock dat,</li>
+        <li>jednoduché a srozumitelné řízení robota,</li>
+        <li>bezpečné oddělení režimu <b>live</b> a stavu <b>armed</b>.</li>
+      </ul>
+    </section>
+
+    <section class="page" id="s1">
+      <h2>1) Jak je robot teď architektonicky postavený</h2>
+
+      <div class="callout warn">
+        V projektu nyní musí existovat jen <b>jedno jediné dashboard UI</b>: <code>app/static/index.html</code>.
+        Staré dashboard větve jsou z projektu vyřazené nebo ponechané jen jako kompatibilní obal.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Vrstva</th>
+            <th>Soubor / umístění</th>
+            <th>K čemu slouží</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frontend dashboard</td>
+            <td><code>app/static/index.html</code></td>
+            <td>Jediné aktivní uživatelské rozhraní dashboardu.</td>
+          </tr>
+          <tr>
+            <td>Nápověda</td>
+            <td><code>app/static/help.html</code></td>
+            <td>Tento dokument.</td>
+          </tr>
+          <tr>
+            <td>Backend API</td>
+            <td><code>app/api/app.py</code></td>
+            <td>Jediný aktivní backend pro dashboard a jeho ovládání.</td>
+          </tr>
+          <tr>
+            <td>Start aplikace</td>
+            <td><code>server.py</code>, <code>main.py</code>, startovací <code>.bat</code></td>
+            <td>Směrují spuštění na <code>app.api.app:app</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Praktický význam</h3>
+      <p>
+        Když změníš dashboard, měníš už jen <code>app/static/index.html</code>. Když změníš logiku API nebo data pro dashboard,
+        měníš <code>app/api/app.py</code>. Tím se výrazně snižuje chaos, protože už neexistuje druhá falešná větev,
+        která by vracela náhodné ceny nebo nuly.
+      </p>
+    </section>
+
+    <section class="page" id="s2">
+      <h2>2) Bezpečný začátek práce s robotem</h2>
+
+      <div class="callout warn">
+        <b>Zlaté pravidlo:</b> přepnutí na <b>live</b> ještě samo o sobě neznamená, že robot smí obchodovat.
+        Druhá samostatná pojistka je <b>ARM</b>. Právě to je správně.
+      </div>
+
+      <ol>
+        <li>Po spuštění nejdřív zkontroluj, že se dashboard načetl a nahoře se obnovují kurzy BTC, ETH a ADA.</li>
+        <li>Nech režim <b>paper</b>.</li>
+        <li>Zkontroluj, že stav robota je srozumitelný: <b>STOPPED</b> nebo <b>RUNNING</b>.</li>
+        <li>Nastav kapitál jen u párů, které chceš opravdu používat.</li>
+        <li>Teprve pokud chceš reálnou exekuci, přepni na <b>live</b>.</li>
+        <li>V live režimu nech výchozí stav <b>DISARMED</b>, dokud nejsi připravený.</li>
+        <li>Až těsně před ostrým provozem použij <b>ARM</b>.</li>
+      </ol>
+
+      <h3>Bezpečný mentální model</h3>
+      <div class="kv">
+        <div><code>paper + disarmed</code></div>
+        <div>nejbezpečnější pracovní stav pro test a kontrolu dashboardu</div>
+
+        <div><code>live + disarmed</code></div>
+        <div>live režim je zvolen, ale write exekuce je stále blokovaná</div>
+
+        <div><code>live + armed</code></div>
+        <div>ostrá připravenost na reálné obchodování</div>
+
+        <div><code>emergency</code></div>
+        <div>okamžité zastavení robota, návrat do paper, odarmování a přepnutí párů do STOPPED</div>
+      </div>
+    </section>
+
+    <section class="page" id="s3">
+      <h2>3) Horní lišta dashboardu</h2>
+
+      <h3>Co v horní liště je</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Prvek</th>
+            <th>Co ukazuje</th>
+            <th>Odkud to bere data</th>
+            <th>Praktický význam</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BTC / ETH / ADA boxy</td>
+            <td>aktuální cenu v USD a 24h změnu</td>
+            <td><code>/api/market/prices</code></td>
+            <td>rychlá orientace v trhu bez otevírání detailu páru</td>
+          </tr>
+          <tr>
+            <td>Market sentiment</td>
+            <td>zjednodušené skóre 0–100</td>
+            <td>počítá se z průměru <code>prediction</code> přes aktivní páry</td>
+            <td>není to samostatný AI engine, ale souhrnný vizuální indikátor nálady</td>
+          </tr>
+          <tr>
+            <td>Mode badge</td>
+            <td><b>PAPER</b> nebo <b>LIVE</b></td>
+            <td><code>/api/control/state</code> a <code>/api/robot/status</code></td>
+            <td>okamžitě vidíš, v jakém režimu právě jsi</td>
+          </tr>
+          <tr>
+            <td>Clock</td>
+            <td>lokální čas v prohlížeči</td>
+            <td>frontend</td>
+            <td>pomáhá při kontrole obnovování dat</td>
+          </tr>
+          <tr>
+            <td>Nápověda</td>
+            <td>odkaz na <code>help.html</code></td>
+            <td>frontend</td>
+            <td>rychlý návrat do dokumentace</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Jak číst 24h změnu</h3>
+      <p>
+        Zelená znamená růst, červená pokles. U horních tří aktiv jde o 24h změnu v USD. Nejsou to interní výpočty portfolia,
+        ale tržní změny referenčních coinů.
+      </p>
+
+      <div class="callout">
+        <b>Market sentiment</b> není autonomní rozhodovač. Je to zjednodušený přehled toho, jak vychází souhrn interního pole <code>prediction</code> na kartách párů.
+      </div>
+    </section>
+
+    <section class="page" id="s4">
+      <h2>4) Portfolio souhrn</h2>
+
+      <p>
+        Druhá lišta pod headerem slouží jako rychlý souhrn portfolia nad tím, co máš nastavené na jednotlivých párech.
+        Hodnoty se počítají z kapitálu a stavů párů, ne z nějakého odděleného účetního modulu.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Pole</th>
+            <th>Význam</th>
+            <th>Jak se počítá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Portfolio Value</td>
+            <td>souhrnná hodnota aktivního nastaveného kapitálu</td>
+            <td>u <code>fiat</code> přímo částka, u <code>crypto</code> množství × aktuální cena páru</td>
+          </tr>
+          <tr>
+            <td>PnL Today</td>
+            <td>odhad dnešního výsledku</td>
+            <td>z kapitálu jednotlivých párů a jejich 24h procentní změny</td>
+          </tr>
+          <tr>
+            <td>Exposure</td>
+            <td>hrubá vystavenost trhu</td>
+            <td>v současné verzi v praxi odpovídá portfolio value</td>
+          </tr>
+          <tr>
+            <td>Open Trades</td>
+            <td>počet párů ve stavu <code>RUNNING</code> nebo <code>ACTIVE</code></td>
+            <td>počítá frontend z načtených stavů párů</td>
+          </tr>
+          <tr>
+            <td>Fiat / Crypto</td>
+            <td>poměr kapitálu mezi fiat a crypto režimem</td>
+            <td>frontend počítá procenta z nastavených pair capital hodnot</td>
+          </tr>
+          <tr>
+            <td>Holdings</td>
+            <td>přehled aktiv, u kterých je nastaven kapitál</td>
+            <td>seznam base aktiv z párů s nenulovým kapitálem</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        Tento souhrn je dashboardový pracovní součet. Není to plnohodnotná burzovní účetní evidence ani auditní výpis účtu.
+      </div>
+    </section>
+
+    <section class="page" id="s5">
+      <h2>5) Global Control: režim, ARM/DISARM, start/stop/emergency</h2>
+
+      <h3>Status panel</h3>
+      <p>
+        V levém panelu je základní řídicí blok. Ten je nejdůležitější část celého dashboardu, protože určuje,
+        zda je robot v paper nebo live režimu, zda je live exekuce odemčená a zda robot logicky běží.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Prvek</th>
+            <th>Co dělá</th>
+            <th>Kdy ho použít</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>modeSelect</code> + <b>Apply Mode</b></td>
+            <td>přepne mezi <code>paper</code> a <code>live</code></td>
+            <td>když měníš režim práce robota</td>
+          </tr>
+          <tr>
+            <td><b>ARM</b></td>
+            <td>zapne příznak <code>armed=true</code></td>
+            <td>jen když je režim live a jsi připravený na ostrou exekuci</td>
+          </tr>
+          <tr>
+            <td><b>DISARM</b></td>
+            <td>vypne <code>armed</code></td>
+            <td>po testu, při nejistotě, při dočasném odstavení live write akcí</td>
+          </tr>
+          <tr>
+            <td><b>Start</b></td>
+            <td>nastaví robota na <code>RUNNING</code></td>
+            <td>když chceš, aby robot běžel</td>
+          </tr>
+          <tr>
+            <td><b>Stop</b></td>
+            <td>nastaví robota na <code>STOPPED</code></td>
+            <td>běžné zastavení</td>
+          </tr>
+          <tr>
+            <td><b>Emergency</b></td>
+            <td>vynutí paper, disarm a STOPPED pro celý robot i páry</td>
+            <td>nouzové zastavení nebo když ztratíš důvěru ve stav robota</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Co dělá emergency přesně</h3>
+      <ul>
+        <li><code>runtime_state["robot_status"] = "STOPPED"</code></li>
+        <li><code>runtime_state["armed"] = false</code></li>
+        <li><code>runtime_state["mode"] = "paper"</code></li>
+        <li>všechny páry přepne do <code>STOPPED</code></li>
+      </ul>
+
+      <div class="callout bad">
+        <b>Emergency</b> je nejtvrdší brzda v současné verzi dashboardu. Nemá ale vlastní flatten ani cancel-all order engine.
+        Je to nouzové zastavení logiky dashboardu a pracovního runtime stavu.
+      </div>
+    </section>
+
+    <section class="page" id="s6">
+      <h2>6) Karty párů: co přesně znamená každá hodnota</h2>
+
+      <p>
+        Uprostřed dashboardu je pět karet pro pět aktivních párů. Každá karta je současně mini panel stavu a vstup do detailu páru.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Řádek na kartě</th>
+            <th>Význam</th>
+            <th>Jak to číst</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Price</td>
+            <td>poslední známá cena páru</td>
+            <td>hlavní aktuální cena pro daný quote pár</td>
+          </tr>
+          <tr>
+            <td>Bid / Ask</td>
+            <td>nejlepší bid a ask</td>
+            <td>pomáhá poznat šířku trhu a odhadnout spread</td>
+          </tr>
+          <tr>
+            <td>Spread</td>
+            <td>procentní spread</td>
+            <td>čím vyšší, tím méně příjemná exekuce</td>
+          </tr>
+          <tr>
+            <td>Robot</td>
+            <td>stav páru</td>
+            <td><code>RUNNING</code>, <code>IDLE</code> nebo <code>STOPPED</code></td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td>kapitálový režim a velikost</td>
+            <td>např. <code>fiat 1000</code> nebo <code>crypto 0.5</code></td>
+          </tr>
+          <tr>
+            <td>AI Prediction</td>
+            <td>interní predikční procento</td>
+            <td>kladné = zeleně, záporné = červeně</td>
+          </tr>
+          <tr>
+            <td>PnL</td>
+            <td>24h procentní změna páru</td>
+            <td>není to realizovaný trade ledger PnL, ale tržní změna z cenových dat</td>
+          </tr>
+          <tr>
+            <td>Sparkline</td>
+            <td>zjednodušená krátká křivka z 24h série</td>
+            <td>rychlý vizuální náhled směru vývoje</td>
+          </tr>
+          <tr>
+            <td>KILL</td>
+            <td>okamžité zastavení konkrétního páru</td>
+            <td>volá backendový endpoint pro kill daného páru</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Jak se určuje stav páru</h3>
+      <p>
+        Stav páru se nesmí vykládat izolovaně. Rozhoduje kombinace:
+      </p>
+      <ul>
+        <li>globální stav robota,</li>
+        <li>zda má pár nenulový kapitál,</li>
+        <li>zda byl konkrétní pár ručně zastaven přes <b>KILL</b>.</li>
+      </ul>
+
+      <div class="callout">
+        Typicky platí:
+        <br><code>RUNNING</code> = robot běží a pár má nastavený kapitál,
+        <br><code>IDLE</code> = pár není stopnutý, ale není aktivně spuštěný,
+        <br><code>STOPPED</code> = pár byl explicitně zastaven.
+      </div>
+    </section>
+
+    <section class="page" id="s7">
+      <h2>7) Fullscreen detail páru a práce s kapitálem</h2>
+
+      <p>
+        Kliknutím na kartu páru otevřeš fullscreen detail. To je hlavní pracovní okno pro daný pár.
+      </p>
+
+      <h3>Co tam dnes funguje opravdu</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Prvek</th>
+            <th>Stav</th>
+            <th>Co přesně dělá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Capital mode</td>
+            <td>funkční</td>
+            <td>volíš <code>fiat</code> nebo <code>crypto</code></td>
+          </tr>
+          <tr>
+            <td>Capital amount</td>
+            <td>funkční</td>
+            <td>zadáš velikost kapitálu pro daný pár</td>
+          </tr>
+          <tr>
+            <td>Save capital</td>
+            <td>funkční</td>
+            <td>uloží nastavení na backend přes <code>/api/pair/{pair}/capital</code></td>
+          </tr>
+          <tr>
+            <td>Big chart</td>
+            <td>funkční</td>
+            <td>zobrazí 24h sérii pro zvolený pár</td>
+          </tr>
+          <tr>
+            <td>KILL</td>
+            <td>funkční</td>
+            <td>zastaví konkrétní pár</td>
+          </tr>
+          <tr>
+            <td>BUY / SELL / LIMIT / MARKET / STOP LOSS / TAKE PROFIT / AI STRATEGY</td>
+            <td>placeholder</td>
+            <td>tlačítka jsou zatím jen vizuální, bez reálného backend napojení</td>
+          </tr>
+          <tr>
+            <td>AI Overlay</td>
+            <td>placeholder</td>
+            <td>zatím vypíše jen informační hlášku, není implementovaná vizuální overlay logika</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Jak správně vyplnit kapitál</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Volba</th>
+            <th>Co znamená</th>
+            <th>Příklad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>fiat</code></td>
+            <td>částka je zadaná v quote měně páru</td>
+            <td>u <code>BTC_EUR</code> hodnota <code>1000</code> znamená 1000 EUR</td>
+          </tr>
+          <tr>
+            <td><code>crypto</code></td>
+            <td>částka je zadaná v base aktivu</td>
+            <td>u <code>BTC_EUR</code> hodnota <code>0.15</code> znamená 0.15 BTC</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        Nastavení kapitálu je pro současnou verzi robota zásadní. Bez nenulového kapitálu zůstane pár obvykle v <code>IDLE</code>,
+        i když je robot globálně spuštěný.
+      </div>
+    </section>
+
+    <section class="page" id="s8">
+      <h2>8) Velký graf páru</h2>
+
+      <p>
+        Velký graf ve fullscreen detailu už není mock. Bere data z backendu přes endpoint
+        <code>/api/pair/{pair_name}/chart</code> a vykresluje je knihovnou Lightweight Charts.
+      </p>
+
+      <h3>Co graf dnes zobrazuje</h3>
+      <ul>
+        <li>jednu čáru s historickou 24h cenovou sérií,</li>
+        <li>časovou osu podle timestampů z backendu,</li>
+        <li>data pro konkrétní zvolený pár.</li>
+      </ul>
+
+      <h3>Co graf dnes ještě neumí</h3>
+      <ul>
+        <li>svíčky,</li>
+        <li>více overlay vrstev,</li>
+        <li>AI pásma nejistoty,</li>
+        <li>značky exekucí,</li>
+        <li>vstupní a výstupní zóny.</li>
+      </ul>
+
+      <div class="callout">
+        Současný graf je tedy <b>reálný datový graf</b>, ale stále ještě <b>jednoduchý</b>. Je vhodný pro kontrolu směru, průběhu a živosti dat,
+        ne pro plnohodnotnou analytickou vizualizaci strategie.
+      </div>
+    </section>
+
+    <section class="page" id="s9">
+      <h2>9) Trades, Signals a stavové sekce</h2>
+
+      <h3>Trades</h3>
+      <p>
+        Sekce <b>Trades</b> zobrazuje poslední položky z backendového seznamu <code>/api/trades</code>.
+        Pokud backend nemá žádné obchody, zobrazí se hláška <b>No trades yet</b>.
+      </p>
+
+      <h3>Signals</h3>
+      <p>
+        Sekce <b>Signals</b> zobrazuje poslední položky z <code>/api/signals</code>.
+        Pokud backend nemá žádné signály, zobrazí se <b>No signals yet</b>.
+      </p>
+
+      <h3>AI Signal Heatmap, Equity Curve, Portfolio Risk Map</h3>
+      <p>
+        Tyto tři bloky jsou v současném dashboardu přítomné, ale fungují pouze jako připravená místa pro budoucí rozšíření.
+        Frontend do nich dnes zapisuje jen informativní text typu <b>ready</b>. Není za nimi skutečný výpočet heatmapy, risk mapy ani vykreslené equity křivky.
+      </p>
+
+      <div class="callout warn">
+        To, že je sekce na obrazovce, ještě neznamená, že je plně implementovaná. V současné verzi jsou plně funkční jen ty bloky,
+        které mají skutečné API napojení nebo vlastní frontend logiku s reálnými daty.
+      </div>
+    </section>
+
+    <section class="page" id="s10">
+      <h2>10) Přesný význam režimů paper, live, armed, stopped</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Stav</th>
+            <th>Význam</th>
+            <th>Co to neznamená</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>paper</b></td>
+            <td>robot je v papírovém režimu</td>
+            <td>neznamená automaticky, že robot neběží; může být paper + running</td>
+          </tr>
+          <tr>
+            <td><b>live</b></td>
+            <td>robot je v ostrém obchodním režimu</td>
+            <td>neznamená automaticky, že je povolená exekuce; k tomu je ještě ARM</td>
+          </tr>
+          <tr>
+            <td><b>armed</b></td>
+            <td>live write logika je odemčená</td>
+            <td>neznamená automaticky, že robot zrovna běží; může být live + armed + stopped</td>
+          </tr>
+          <tr>
+            <td><b>stopped</b></td>
+            <td>robot je zastavený</td>
+            <td>neznamená reset všech dat; dashboard může dál zobrazovat poslední známý stav</td>
+          </tr>
+          <tr>
+            <td><b>running</b></td>
+            <td>robot je spuštěný</td>
+            <td>neznamená, že všechny páry aktivně obchodují; některé mohou být idle nebo stopped</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Nejdůležitější praktické pravidlo</h3>
+      <p>
+        Tlačítka <b>LIVE/PAPER</b> a <b>ARM/DISARM</b> jsou záměrně nezávislá. To je správná bezpečnostní logika.
+        Nejdřív vybíráš obchodní režim systému, teprve potom případně povoluješ ostrou exekuci.
+      </p>
+    </section>
+
+    <section class="page" id="s11">
+      <h2>11) Jak robot počítá ceny, změny a metriky</h2>
+
+      <h3>Ceny a tržní data</h3>
+      <ul>
+        <li>pair tickery se načítají z Coinmate ticker API,</li>
+        <li>referenční ceny BTC/ETH/ADA v USD a 24h změny se berou z CoinGecko simple price API,</li>
+        <li>24h grafové série se berou z CoinGecko market chart API.</li>
+      </ul>
+
+      <h3>Prediction</h3>
+      <p>
+        Pole <code>prediction</code> je v současné verzi jednoduchý momentum výpočet z konce dostupné grafové série.
+        Není to hluboký AI model. Je to procentní odhad směru na základě poslední části 24h vývoje.
+      </p>
+
+      <h3>PnL</h3>
+      <p>
+        Pole <code>pnl</code> na kartách párů je v současné verzi 24h procentní změna ceny vůči prvnímu bodu načtené grafové série.
+        Není to samostatná evidence realizovaných zisků a ztrát z order managementu.
+      </p>
+
+      <h3>Metriky portfolia</h3>
+      <p>
+        <code>/api/metrics</code> vrací zjednodušené pracovní metriky jako <code>equity</code>, <code>pnl</code>, <code>drawdown</code>,
+        <code>trades_today</code>, <code>win_rate</code> a <code>exposure</code>. Tyto metriky jsou postavené nad runtime stavem párů,
+        jejich kapitálem a cenovými daty, nikoli nad plným burzovním accounting systémem.
+      </p>
+
+      <div class="callout">
+        Současná verze tedy dává <b>dobrý operační přehled</b>, ale ještě ne <b>institucionální auditní reporting</b>.
+      </div>
+    </section>
+
+    <section class="page" id="s12">
+      <h2>12) Co jsou placeholdery a co už je reálně funkční</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Část dashboardu</th>
+            <th>Stav</th>
+            <th>Poznámka</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Top ceny BTC / ETH / ADA</td>
+            <td>funkční</td>
+            <td>reálná data z API</td>
+          </tr>
+          <tr>
+            <td>Market sentiment</td>
+            <td>funkční, ale odvozený</td>
+            <td>souhrn predikcí párů, ne samostatný engine</td>
+          </tr>
+          <tr>
+            <td>Portfolio summary</td>
+            <td>funkční</td>
+            <td>počítaný dashboardový součet</td>
+          </tr>
+          <tr>
+            <td>Mode / ARM / Start / Stop / Emergency</td>
+            <td>funkční</td>
+            <td>napojené na backend</td>
+          </tr>
+          <tr>
+            <td>Karty párů</td>
+            <td>funkční</td>
+            <td>reálná data a per-pair stav</td>
+          </tr>
+          <tr>
+            <td>KILL na páru</td>
+            <td>funkční</td>
+            <td>volá backend kill endpoint</td>
+          </tr>
+          <tr>
+            <td>Save capital</td>
+            <td>funkční</td>
+            <td>ukládá režim a velikost kapitálu pro pár</td>
+          </tr>
+          <tr>
+            <td>Velký graf</td>
+            <td>funkční</td>
+            <td>line chart z reálné 24h série</td>
+          </tr>
+          <tr>
+            <td>Trades / Signals</td>
+            <td>funkční</td>
+            <td>pokud backend dodá data</td>
+          </tr>
+          <tr>
+            <td>AI Heatmap / Equity Curve placeholder / Risk Map</td>
+            <td>placeholder</td>
+            <td>pouze připravené panely</td>
+          </tr>
+          <tr>
+            <td>BUY / SELL / LIMIT / MARKET / STOP LOSS / TAKE PROFIT</td>
+            <td>placeholder</td>
+            <td>vizuální tlačítka bez napojené exekuční logiky</td>
+          </tr>
+          <tr>
+            <td>AI Overlay</td>
+            <td>placeholder</td>
+            <td>zatím jen informační alert</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page" id="s13">
+      <h2>13) API endpointy, které dashboard opravdu používá</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Endpoint</th>
+            <th>Metoda</th>
+            <th>K čemu slouží</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/api/control/state</code></td><td>GET</td><td>vrací <code>mode</code>, <code>armed</code>, <code>robot_status</code></td></tr>
+          <tr><td><code>/api/control/mode</code></td><td>POST</td><td>přepnutí mezi paper/live</td></tr>
+          <tr><td><code>/api/control/arm</code></td><td>POST</td><td>ARM nebo DISARM</td></tr>
+          <tr><td><code>/api/robot/status</code></td><td>GET</td><td>stav robota včetně režimu a armed flagu</td></tr>
+          <tr><td><code>/api/robot/start</code></td><td>POST</td><td>spustí robota</td></tr>
+          <tr><td><code>/api/robot/stop</code></td><td>POST</td><td>zastaví robota</td></tr>
+          <tr><td><code>/api/robot/emergency</code></td><td>POST</td><td>nouzové zastavení a návrat do paper</td></tr>
+          <tr><td><code>/api/metrics</code></td><td>GET</td><td>vrací pracovní metriky dashboardu</td></tr>
+          <tr><td><code>/api/pairs</code></td><td>GET</td><td>vrací seznam všech párů a jejich stavů</td></tr>
+          <tr><td><code>/api/pair/{pair}/status</code></td><td>GET</td><td>detail stavu konkrétního páru</td></tr>
+          <tr><td><code>/api/pair/{pair}/chart</code></td><td>GET</td><td>24h série pro graf páru</td></tr>
+          <tr><td><code>/api/pair/{pair}/capital</code></td><td>POST</td><td>uložení kapitálového režimu a částky</td></tr>
+          <tr><td><code>/api/pair/{pair}/kill</code></td><td>POST</td><td>zastavení konkrétního páru</td></tr>
+          <tr><td><code>/api/pair/{pair}/resume</code></td><td>POST</td><td>obnovení páru podle runtime podmínek</td></tr>
+          <tr><td><code>/api/market/prices</code></td><td>GET</td><td>top ceny BTC/ETH/ADA a pair tickery</td></tr>
+          <tr><td><code>/api/trades</code></td><td>GET</td><td>poslední trade záznamy</td></tr>
+          <tr><td><code>/api/signals</code></td><td>GET</td><td>poslední signály</td></tr>
+          <tr><td><code>/api/equity_curve</code></td><td>GET</td><td>základní equity sérii pro další rozšíření</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        To jsou endpointy, které dávají smysl k aktuálnímu dashboardu. Nápověda záměrně nepopisuje staré nebo neexistující API větve.
+      </div>
+    </section>
+
+    <section class="page" id="s14">
+      <h2>14) Doporučený praktický workflow</h2>
+
+      <h3>Workflow pro běžný start</h3>
+      <ol>
+        <li>Spusť robota přes správný startovací skript.</li>
+        <li>Ověř, že se otevřel dashboard na <code>127.0.0.1:8000</code>.</li>
+        <li>Zkontroluj horní kurzy a stav módu.</li>
+        <li>Nech režim <b>paper</b>.</li>
+        <li>Nastav kapitál jen na párech, které chceš testovat.</li>
+        <li>Dej <b>Start</b>.</li>
+        <li>Ověř, které páry přešly do <code>RUNNING</code> a které zůstaly <code>IDLE</code>.</li>
+        <li>Podívej se do fullscreen detailu a zkontroluj graf.</li>
+        <li>Sleduj <b>Trades</b> a <b>Signals</b>.</li>
+      </ol>
+
+      <h3>Workflow před live provozem</h3>
+      <ol>
+        <li>Nejdřív mít stabilní paper stav.</li>
+        <li>Přepnout na <b>live</b>.</li>
+        <li>Ještě nechat <b>DISARMED</b>.</li>
+        <li>Prověřit, že vše vypadá správně.</li>
+        <li>Teprve potom použít <b>ARM</b>.</li>
+      </ol>
+
+      <h3>Workflow při problému</h3>
+      <ol>
+        <li>Když je problém s jedním párem, použij jeho <b>KILL</b>.</li>
+        <li>Když je problém systémový, použij <b>Emergency</b>.</li>
+        <li>Potom zkontroluj mode, armed stav a statusy párů.</li>
+        <li>Teprve potom analyzuj data a logiku.</li>
+      </ol>
+    </section>
+
+    <section class="page" id="s15">
+      <h2>15) Nejčastější problémy a jak je číst</h2>
+
+      <h3>„Pár je IDLE, i když jsem dal Start“</h3>
+      <p>
+        Nejčastější příčina je nenastavený nebo nulový kapitál. Robot běží globálně, ale konkrétní pár bez kapitálu nepřejde do plného běhu.
+      </p>
+
+      <h3>„Jsem v live, ale ARM nejde“</h3>
+      <p>
+        V současném backendu ARM vynuceně odmítne požadavek, pokud nejsi v režimu <code>live</code>. Nejdřív tedy musíš přepnout mode na live.
+      </p>
+
+      <h3>„Graf nic neukazuje“</h3>
+      <p>
+        Obvykle to znamená, že pro pár zatím nepřišla grafová série nebo API vrací prázdno. V takovém případě zkontroluj,
+        zda se načítají ceny a zda má backend dostupná externí data.
+      </p>
+
+      <h3>„Trades a Signals jsou prázdné“</h3>
+      <p>
+        To samo o sobě ještě nemusí být chyba. V současné verzi backend tyto seznamy vrací, ale pokud do nich nic nezapisuje jiná logika,
+        dashboard korektně ukáže <b>No trades yet</b> a <b>No signals yet</b>.
+      </p>
+
+      <h3>„Portfolio Value neodpovídá burzovnímu účtu“</h3>
+      <p>
+        Portfolio souhrn je dashboardový pracovní výpočet z pair capital nastavení a cen. Není to propojení na skutečný účetní zůstatek burzy.
+      </p>
+
+      <h3>„KILL nezastavil celý robot“</h3>
+      <p>
+        To je správně. <b>KILL</b> na kartě je per-pair akce. Celosystémové zastavení dělá až <b>Emergency</b> nebo <b>Stop</b>.
+      </p>
+    </section>
+
+    <section class="page" id="s16">
+      <h2>16) Co už v robotu nyní není</h2>
+
+      <div class="callout warn">
+        Tato část je záměrně stručná, aby bylo jasné, co v dashboardu nehledat a podle čeho ho teď neposuzovat.
+      </div>
+
+      <ul>
+        <li>Single Backtest</li>
+        <li>Portfolio Backtest</li>
+        <li>Loop Runner</li>
+        <li>Bar-close policy</li>
+        <li>Scheduler</li>
+        <li>Guardrails konfigurace typu max risk / max day loss v UI</li>
+        <li>Approve mode</li>
+        <li>Manual override workflow s plnou exekucí</li>
+        <li>Flatten all</li>
+        <li>Cancel all orders</li>
+        <li>Emergency tokeny a confirm headery</li>
+        <li>WebSocket stream dashboardu</li>
+        <li>Institutional Quant Suite, Strategy Comparison, Portfolio Allocator, Execution Realism</li>
+      </ul>
+
+      <p>
+        Pokud se starší dokumentace zmiňovala o některé z těchto věcí, pro současný robot už to neplatí.
+      </p>
+    </section>
+
+    <section class="page" id="s17">
+      <h2>17) Glosář pojmů</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Pojem</th>
+            <th>Význam v současném robotu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Control plane</td><td>dashboard a API vrstva, přes kterou robota sleduješ a ovládáš</td></tr>
+          <tr><td>Paper</td><td>papírový režim, bezpečnější provozní mód</td></tr>
+          <tr><td>Live</td><td>ostrý obchodní režim</td></tr>
+          <tr><td>Armed</td><td>odemčený live write stav</td></tr>
+          <tr><td>Disarmed</td><td>live write logika je blokovaná</td></tr>
+          <tr><td>Pair capital</td><td>kapitál přidělený konkrétnímu páru</td></tr>
+          <tr><td>Fiat capital mode</td><td>kapitál zadáváš v quote měně páru</td></tr>
+          <tr><td>Crypto capital mode</td><td>kapitál zadáváš v base aktivu páru</td></tr>
+          <tr><td>Prediction</td><td>jednoduchý procentní odhad směru z poslední části grafové série</td></tr>
+          <tr><td>PnL</td><td>v současném UI zejména odvozená procentní změna, ne plný realizovaný ledger</td></tr>
+          <tr><td>Exposure</td><td>vystavenost trhu vypočtená z aktivního kapitálu</td></tr>
+          <tr><td>KILL</td><td>okamžité zastavení konkrétního páru</td></tr>
+          <tr><td>Emergency</td><td>nouzové celkové zastavení runtime stavu robota</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const input = document.getElementById('q');
+const links = Array.from(document.querySelectorAll('#toc a'));
+input.addEventListener('input', () => {
+  const q = input.value.trim().toLowerCase();
+  links.forEach(a => {
+    const txt = a.textContent.toLowerCase();
+    a.style.display = txt.includes(q) ? 'block' : 'none';
+  });
+});
+</script>
+</body>
+</html>
