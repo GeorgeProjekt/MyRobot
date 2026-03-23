@@ -10,3 +10,11 @@ trading_state.db*
 .openclaw/
 *.pyc
 __pycache__/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Test / temp outputs
+*.log
+*.tmp
