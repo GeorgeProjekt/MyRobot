@@ -21,3 +21,6 @@ Thumbs.db
 
 # local virtualenv
 .venv/
+
+# local virtualenv
+.venv/
