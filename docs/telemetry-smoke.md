@@ -19,3 +19,18 @@
 - Smoke pokrývá pouze lokální/paper telemetry; žádné tvrzení o live alert routingu nebo externích notifikacích.
 - Události pocházejí z orchestrator stubů; risk manager stále hlásí `reason="risk_manager_missing"`.
 - Další etapa vyžaduje reálný alert transport (webhook/e-mail/SIEM) a monitorování čerstvosti dat.
+
+## Risk Halt Smoke (manual shell evidence)
+
+- Date (UTC): 2026-03-25
+- Command sequence (manual .venv run):
+- `.venv/bin/python scripts/telemetry_smoke.py`
+- `.venv/bin/python scripts/watchdog_fail_safe.py`
+- Evidence:
+- `runtime/alerts/telemetry_smoke_2026-03-25T21-28-49Z.json`
+- `runtime/alerts/last_alert.json`
+- Halt outcome (watchdog fail-safe):
+- `{"status":"ABORT","reasons":[{"component":"watchdog","status":"UNKNOWN"}]}`
+- Scope note:
+- This proves paper/offline risk-stop baseline behavior only; it is not a production/live risk-halt claim.
+
