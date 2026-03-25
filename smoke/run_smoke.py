@@ -78,15 +78,16 @@ def _patched_runtime_journal(path: Path) -> TradeJournal:
     return journal
 
 
-def _build_stub_service() -> RobotService:
+def _build_stub_service(pair: str = "BTC_EUR") -> RobotService:
+    pair = str(pair or "BTC_EUR").upper()
     service = RobotService(
-        pair="BTC_EUR",
+        pair=pair,
         trading_mode="paper",
-        config=RobotServiceConfig(pair="BTC_EUR"),
+        config=RobotServiceConfig(pair=pair),
     )
 
     service._fetch_market_snapshot = lambda: {  # type: ignore[assignment]
-        "pair": "BTC_EUR",
+        "pair": pair,
         "price": 100.0,
         "available": True,
     }
@@ -97,9 +98,12 @@ def _build_stub_service() -> RobotService:
     service._reconcile_pending_orders = fake_reconcile  # type: ignore[assignment]
 
     class StubAdapter:
+        def __init__(self, target_pair: str):
+            self._pair = target_pair
+
         def analyze(self, _market_data):
             return {
-                "pair": "BTC_EUR",
+                "pair": self._pair,
                 "price": 100.0,
                 "signal": "BUY",
                 "confidence": 0.9,
@@ -115,7 +119,7 @@ def _build_stub_service() -> RobotService:
                 "confidence": analysis["confidence"],
             }
 
-    service.adapter = StubAdapter()
+    service.adapter = StubAdapter(pair)
 
     async def fake_execute_signal(*_args, **_kwargs):  # type: ignore[override]
         execution = {

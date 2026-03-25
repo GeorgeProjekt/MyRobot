@@ -18,3 +18,6 @@ Thumbs.db
 # Test / temp outputs
 *.log
 *.tmp
+
+# local virtualenv
+.venv/

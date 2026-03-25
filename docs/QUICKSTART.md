@@ -27,3 +27,11 @@ Očekávaný výstup: `PAPER_RUN_PASS {'pair': 'BTC_EUR', 'steps': 1, ...}`. Bez
 - Tato rychlá cesta neinstaluje plné telemetry hub ani live credentials.
 - FastAPI/uvicorn server není součástí offline smoke – spusťte jej přes `python3 server.py` až po instalaci reálných závislostí.
 - Live trading režim vyžaduje nastavit Coinmate klíče v prostředí (`COINMATE_API_KEY`, ...).
+
+## Health snapshot
+````
+python3 scripts/health_snapshot.py
+````
+Vstupy: čte `runtime/journal/*.jsonl`, `runtime/watchdog/pairs.json`, `runtime/telemetry/events.jsonl`.
+Limity: pokud soubor neexistuje, status je UNKNOWN; skript neoživuje služby, pouze čte poslední lokální záznamy.
+
